@@ -1,35 +1,65 @@
+'use client';
+
+import {IKONIcon} from '@/app/components/SVGIcons';
+import {useState} from 'react';
 
 
-export default function StripNavigation({ children }) {
-  const ikonSVG = (
-    <svg id="ikonTopLogo" data-name="???? 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 17"
-         style={{
-           maxHeight: '1rem',
-           fill: 'white'
-         }}>
-      <path className="cls-1"
-            d="M3,16a4.19,4.19,0,0,1-1.8-.2A2,2,0,0,1,.1,14.7,6.7,6.7,0,0,1,0,13V1a4.19,4.19,0,0,1,1.8.2A2,2,0,0,1,2.9,2.3,6.7,6.7,0,0,1,3,4Z"></path>
-      <path className="cls-2"
-            d="M54,4H44a4.19,4.19,0,0,1,.2-1.8,2,2,0,0,1,1.1-1.1A6.7,6.7,0,0,1,47,1h6c5,0,6,1,6,5v6c0,3,1,4,1,4H58a1.75,1.75,0,0,1-2-2V6A1.75,1.75,0,0,0,54,4Z"></path>
-      <path className="cls-1"
-            d="M47,16a4.19,4.19,0,0,1-1.8-.2,2,2,0,0,1-1.1-1.1A6.7,6.7,0,0,1,44,13V5a4.19,4.19,0,0,1,1.8.2,2,2,0,0,1,1.1,1.1A6.7,6.7,0,0,1,47,8Z"></path>
-      <path className="cls-1"
-            d="M10,16a4.19,4.19,0,0,1-1.8-.2,2,2,0,0,1-1.1-1.1A6.7,6.7,0,0,1,7,13V1a4.19,4.19,0,0,1,1.8.2A2,2,0,0,1,9.9,2.3,6.7,6.7,0,0,1,10,4Z"></path>
-      <path className="cls-2"
-            d="M12,7c1.7-1.2,9-6,9-6l.6.7A2.2,2.2,0,0,1,22,3c0,1.2-1.4,2-3,3s-4.5,3-4.5,3l8,5.5a3.05,3.05,0,0,1-2.4,1.68A3.89,3.89,0,0,1,18,15.23c-1.23-.93-4.82-3.54-5.74-4.23S11,9.9,11,9A2.12,2.12,0,0,1,12,7Z"></path>
-      <path className="cls-1"
-            d="M25,9c0-3.5,1.81-5,3.33-5a3.44,3.44,0,0,1,1.4.3S28,4.5,28,8s1.33,5.5,4.83,5.5,4.5,1.5,4.5,1.5a7.45,7.45,0,0,1-4.49,1.3C28,16.3,25,14.23,25,9Z"></path>
-      <path className="cls-1"
-            d="M41,8.06c0,3.5-1.81,5-3.33,5a3.44,3.44,0,0,1-1.4-.3S38,12.56,38,9.06s-1.34-5.5-4.84-5.5-4.5-1.5-4.5-1.5a7.5,7.5,0,0,1,4.5-1.3C38,.76,41,2.83,41,8.06Z"></path>
-    </svg>
-  );
+export default function StripNavigation({menuItems, onMenuItemClick, onChildMenuItemClick}) {
+  const [selectedMenuItem, setSelectedMenuItem] = useState(menuItems[0]);
+  const [selectedChildMenuItem, setSelectedChildMenuItem] = useState(menuItems[0].children[0]);
+  const childMenuItems = selectedMenuItem.children || [];
+
+  onMenuItemClick = typeof onMenuItemClick === 'function' ? onMenuItemClick : () => {};
+  onChildMenuItemClick = typeof onChildMenuItemClick === 'function' ? onChildMenuItemClick : () => {};
 
   return (
-    <nav className='bg-blue-500'>
-      <ul>
-        <li>{ikonSVG}</li>
-        <li>{children}</li>
-      </ul>
-    </nav>
+    <div className='grow flex min-w-72 max-w-72'>
+      <nav className="bg-blue-500 min-w-12 max-w-12" title='IKON'>
+        <ul>
+          <li className="flex items-center justify-center px-1 py-2 h-12">{IKONIcon}</li>
+          {menuItems.map((item, index) => (
+            <li key={index} className={
+              `flex items-center justify-center w-full h-12 ${selectedMenuItem.title === item.title ? 'bg-blue-800' : 'hover:bg-blue-700'}`
+            }>
+              <a
+                href="#"
+                className="px-1 py-2 inline-block w-8 h-8 text-white"
+                onClick={() => {
+                  setSelectedMenuItem(item);
+                  setSelectedChildMenuItem(item.children[0]);
+                  onMenuItemClick(item);
+                }}
+              >
+                <span className="flex items-center justify-center w-full h-full">{item.icon.element}</span>
+                <span className="sr-only">{item.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      {childMenuItems.length > 0 && (
+        <div className='min-w-60 max-w-60 border-e'>
+          <ul className='divide-y'>
+            {childMenuItems.map((item, index) => (
+              <li key={index} className={
+                `flex items-center justify-start h-12 ${selectedChildMenuItem.title === item.title ? 'bg-gray-200' : 'hover:bg-gray-100'}`
+              } title={item.title}>
+                <a
+                  href="#"
+                  className="flex items-center gap-1 px-1 py-2 w-full"
+                  onClick={() => {
+                    setSelectedChildMenuItem(item);
+                    onChildMenuItemClick(item);
+                  }}
+                >
+                  <span className="w-8 h-8 flex items-center justify-center">{item.icon.element}</span>
+                  <span className="inline-block">{item.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 }
