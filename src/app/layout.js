@@ -14,9 +14,6 @@ export default function RootLayout({ children }) {
         <StripNavigation>
           Navigation
         </StripNavigation>
-        <StripNavigation>
-         Page 2
-        </StripNavigation>
         <main className='grow'>
           {children}
         </main>

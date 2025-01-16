@@ -1,0 +1,154 @@
+{
+    "horizontalBarChartOption": 
+    {
+      "title": {
+        "text": "Telecom Revenue and Subscriber Growth"
+      },
+      "tooltip": {
+        "trigger": "axis",
+        "axisPointer": {
+          "type": "shadow"
+        }
+      },
+      "legend": {
+        "data": ["2021", "2022"]
+      },
+      "grid": {
+        "left": "3%",
+        "right": "4%",
+        "bottom": "3%",
+        "containLabel": true
+      },
+      "xAxis": {
+        "type": "value",
+        "boundaryGap": [0, 0.01],
+        "name": "Revenue (in Million USD)"
+      },
+      "yAxis": {
+        "type": "category",
+        "data": [
+          "Prepaid Subscribers",
+          "Postpaid Subscribers",
+          "Broadband Subscribers",
+          "Corporate Accounts",
+          "IoT Connections",
+          "Total Connections"
+        ]
+      },
+      "series": [
+        {
+          "name": "2021",
+          "type": "bar",
+          "data": [45, 30, 15, 10, 8, 108]
+        },
+        {
+          "name": "2022",
+          "type": "bar",
+          "data": [50, 35, 18, 12, 10, 125]
+        }
+      ]
+    },
+   
+  "verticalColChart": {
+    "tooltip": {
+      "trigger": "axis",
+      "axisPointer": {
+        "type": "shadow"
+      }
+    },
+    "legend": {
+      "data": [
+        "Prepaid Subscribers",
+        "Postpaid Subscribers",
+        "Broadband Subscribers",
+        "Churned Customers",
+        "New Connections"
+      ]
+    },
+    "grid": {
+      "left": "3%",
+      "right": "4%",
+      "bottom": "3%",
+      "containLabel": true
+    },
+    "xAxis": [
+      {
+        "type": "category",
+        "data": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ]
+      }
+    ],
+    "yAxis": [
+      {
+        "type": "value",
+        "name": "Subscribers/Revenue"
+      }
+    ],
+    "series": [
+      {
+        "name": "Prepaid Subscribers",
+        "type": "bar",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [320, 300, 310, 340, 380, 400, 420]
+      },
+      {
+        "name": "Postpaid Subscribers",
+        "type": "bar",
+        "stack": "Subscribers",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [100, 120, 110, 150, 160, 170, 200]
+      },
+      {
+        "name": "Broadband Subscribers",
+        "type": "bar",
+        "stack": "Subscribers",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [50, 60, 70, 80, 90, 100, 120]
+      },
+      {
+        "name": "Churned Customers",
+        "type": "bar",
+        "stack": "Churn",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [20, 15, 18, 25, 30, 40, 35]
+      },
+      {
+        "name": "New Connections",
+        "type": "bar",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [50, 60, 80, 90, 100, 120, 150],
+        "markLine": {
+          "lineStyle": {
+            "type": "dashed"
+          },
+          "data": [
+            [
+              { "type": "min" },
+              { "type": "max" }
+            ]
+          ]
+        }
+      }
+    ]
+  }
+    
+    
+  }
+  

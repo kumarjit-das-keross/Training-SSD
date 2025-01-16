@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 
 export default function StripNavigation({ children }) {
   const ikonSVG = (
@@ -29,6 +30,8 @@ export default function StripNavigation({ children }) {
       <ul>
         <li>{ikonSVG}</li>
         <li>{children}</li>
+        <Link href="./page2">Page 2</Link>
+
       </ul>
     </nav>
   );
