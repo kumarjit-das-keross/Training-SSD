@@ -1,17 +1,21 @@
 import ChartLayout from "./ChartLayout";
-import ECharts from "../components/ECharts";
 import chartOptions from "../chartOptions.json";
 import Header from "../components/Header";
 
 export default function Page2() {
   const horizontalBarChartOption = chartOptions.horizontalBarChartOption;
   const velticalBarChartOption = chartOptions.verticalColChart;
+  const gaugeChart = chartOptions.gaugeChart;
+  const progressGauge = chartOptions.progressGauge;
+  const telecomProformanceAreaChart = chartOptions.telecomProformanceAreaChart;
+
+
 
   console.log("chartOptions" + chartOptions);
   return (
     <div className="gap-4 grid grid-cols-12 h-full p-4 w-full">
       <div className="bg-white col-span-12 lg:col-span-7 shadow">
-        <Header> Telecom Revenue for 2021 and 2022</Header>
+        <Header>Telecom Revenue and Subscriber Growth for 2021 and 2022</Header>
 
         <ChartLayout option={horizontalBarChartOption} />
       </div>
@@ -27,26 +31,36 @@ export default function Page2() {
           <p className="text-red-500 text-sm">-5% from year</p>
         </div>
         <div className="bg-white shadow p-4">
-          <h3 className="text-sm font-bold">Customer Satisfaction (CSAT)</h3>
+          <Header>Customer Satisfaction</Header>
+          <div>
+            <ChartLayout option={gaugeChart} />
+          </div>
         </div>
         <div className="col-span-12 lg:col-span-5 grid grid-cols-2 gap-4">
-          <div className="bg-white shadow p-4">
-            <h3 className="text-sm font-bold">Net Promoter Score (NPS)</h3>
+          <div className="bg-white shadow p-1">
+            <Header>Net Promoter Score</Header>
+            <ChartLayout option={gaugeChart} />
           </div>
-          <div className="bg-white shadow p-4">
+          <div className="bg-white shadow p-1">
             <h3 className="text-sm font-bold">Subscriber Retention Rate</h3>
+            {/* <ChartLayout option={progressGauge} /> */}
+
           </div>
         </div>
       </div>
+
+      
       <div className="col-span-12 lg:col-span-12 grid grid-cols-2 gap-4">
-        <div className="bg-white shadow p-4">
+        <div className="bg-white shadow p-1">
           <Header>Tracking subscriber activity trends across the week</Header>
           <ChartLayout option={velticalBarChartOption} />
         </div>
-        <div className="bg-white shadow p-4">
-          <h3 className="text-sm font-bold">
-            Network Utilization Per Subscriber Plan
-          </h3>
+        <div className="bg-white shadow p-1">
+          <Header >
+          Operational Efficiency Metrics
+          </Header>
+          <ChartLayout option={telecomProformanceAreaChart} />
+
         </div>
       </div>
     </div>
