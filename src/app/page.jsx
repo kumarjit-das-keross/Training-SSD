@@ -2,11 +2,11 @@
 
 import './globals.css';
 
-import StripNavigation from '@/app/components/StripNavigation';
-import {CardTextIcon, DashboardIcon, HomeIcon, ReportsIcon} from '@/app/components/SVGIcons';
-import DashboardPage from '@/app/pages/DashboardPage';
-import ReportsPage from '@/app/pages/ReportsPage';
-import DoesNotExistPage from '@/app/pages/DoesNotExistPage';
+import StripNavigation from './components/StripNavigation';
+import {CardTextIcon, DashboardIcon, HomeIcon, ReportsIcon} from './components/SVGIcons';
+import DashboardPage from './pages/DashboardPage';
+import ReportsPage from './pages/ReportsPage';
+import DoesNotExistPage from './pages/DoesNotExistPage';
 import {useState} from 'react';
 
 function getPage(pageName) {
@@ -93,8 +93,10 @@ export default function Home() {
         onChildMenuItemClick={onChildMenuItemClick}
         onMenuItemClick={onMenuItemClick}
       />
-      <main className="grow">
-        {page}
+      <main className="flex flex-row flex-grow gap-4 h-full w-full overflow-x-hidden overflow-y-hidden relative">
+        <div className='w-full h-full p-4'>
+          {page}
+        </div>
       </main>
     </div>
   );

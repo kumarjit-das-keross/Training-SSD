@@ -1,4 +1,7 @@
 import ECharts from '@/app/components/ECharts';
+import Card from '@/app/components/Card';
+import {Activity, Backpack} from 'lucide-react';
+import Widget from '@/app/components/Widget';
 
 export default function DashboardPage() {
   const colors = ['#5470C6', '#91CC75', '#EE6666'];
@@ -107,9 +110,84 @@ export default function DashboardPage() {
   };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Welcome to the dashboard</p>
+    <div className="grid grid-flow-col grid-rows-11 gap-4 h-full">
+
+      <div className="row-span-6 grid lg:grid-cols-3 grid-cols-1 gap-4">
+
+        <div className="lg:col-span-2 col-span-1 grid grid-flow-col grid-rows-10 gap-4">
+
+          <div className="row-span-2 grid lg:grid-cols-4 grid-cols-1 gap-4">
+
+            <div className="col-span-1">
+              <Widget title='Subscribers'>
+                154,628
+              </Widget>
+            </div>
+
+            <div className="col-span-1">
+              <Widget title='Revenue'>
+                $7.35M
+              </Widget>
+            </div>
+
+            <div className="col-span-1">
+              <Widget title='Market Share'>
+                $2.34M
+              </Widget>
+            </div>
+
+            <div className="col-span-1">
+              <Widget title='Churn Rate'>
+                4.67%
+              </Widget>
+            </div>
+
+          </div>
+
+          <div className="row-span-8 grid lg:grid-cols-2 grid-cols-1 gap-4">
+
+            <div className="col-span-1">
+              <Card title="Region-Wise Users">
+                Region-Wise Users Chart
+              </Card>
+            </div>
+
+            <div className="col-span-1">
+              <Card title="Total Subscribers Per Service Type">
+                Total Subscribers Per Service Type Chart
+              </Card>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div className="lg:col-span-1 col-span-1">
+          <Card title="Service Utilization">
+            Service Utilization Chart
+          </Card>
+        </div>
+
+      </div>
+
+      <div className="row-span-5 grid lg:grid-cols-12 grid-cols-1 gap-4">
+        <div className="lg:col-span-3 col-span-1">
+          <Card title="Data Plan Purchased">
+            Data Plan Purchased Chart
+          </Card>
+        </div>
+        <div className="lg:col-span-5 col-span-1">
+          <Card title="Gross Vs Net Subscriber Addition">
+            Gross Vs Net Subscriber Addition Chart
+          </Card>
+        </div>
+        <div className="lg:col-span-4 col-span-1">
+          <Card title="CAPEX to Sales Ratio">
+            CAPEX to Sales Ratio Chart
+          </Card>
+        </div>
+      </div>
+
     </div>
   );
 }
