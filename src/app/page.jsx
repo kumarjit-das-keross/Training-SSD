@@ -3,11 +3,11 @@
 import './globals.css';
 
 import StripNavigation from './components/StripNavigation';
-import {CardTextIcon, DashboardIcon, HomeIcon, ReportsIcon} from './components/SVGIcons';
 import DashboardPage from './pages/DashboardPage';
 import ReportsPage from './pages/ReportsPage';
 import DoesNotExistPage from './pages/DoesNotExistPage';
 import {useState} from 'react';
+import {FileChartColumn, Heading1, Heading2, House, LayoutDashboard, RectangleEllipsis} from 'lucide-react';
 
 function getPage(pageName) {
   if (pageName === 'Home - Dashboard') {
@@ -23,50 +23,32 @@ export default function Home() {
   const mainMenuItems = [
     {
       title:    'Home',
-      icon:     {
-        type:    'svg',
-        element: HomeIcon
-      },
+      icon:     <House size={16} strokeWidth={1}/>,
       children: [
         {
           isMain: true,
           title:  'Dashboard',
-          icon:   {
-            type:    'svg',
-            element: DashboardIcon
-          }
+          icon:   <LayoutDashboard size={16} strokeWidth={1}/>
         },
         {
           title: 'Reports',
-          icon:  {
-            type:    'svg',
-            element: ReportsIcon
-          }
+          icon:  <FileChartColumn size={16} strokeWidth={1}/>
         }
       ],
       selected: true
     },
     {
       title:    'Extra',
-      icon:     {
-        type:    'svg',
-        element: CardTextIcon
-      },
+      icon:     <RectangleEllipsis size={16} strokeWidth={1}/>,
       children: [
         {
           isMain: true,
           title:  'Child 1',
-          icon:   {
-            type:    'svg',
-            element: DashboardIcon
-          }
+          icon:   <Heading1 size={16} strokeWidth={1}/>
         },
         {
           title: 'Child 2',
-          icon:  {
-            type:    'svg',
-            element: ReportsIcon
-          }
+          icon:  <Heading2 size={16} strokeWidth={1}/>
         }
       ]
     }
@@ -94,7 +76,7 @@ export default function Home() {
         onMenuItemClick={onMenuItemClick}
       />
       <main className="flex flex-row flex-grow gap-4 h-full w-full overflow-x-hidden overflow-y-hidden relative">
-        <div className='w-full h-full p-4'>
+        <div className="w-full h-full p-4">
           {page}
         </div>
       </main>
