@@ -1,52 +1,50 @@
 {
-    "horizontalBarChartOption": 
-    {
-      
-      "tooltip": {
-        "trigger": "axis",
-        "axisPointer": {
-          "type": "shadow"
-        }
-      },
-      "legend": {
-        "data": ["2021", "2022"]
-      },
-      "grid": {
-        "left": "3%",
-        "right": "4%",
-        "bottom": "3%",
-        "containLabel": true
-      },
-      "xAxis": {
-        "type": "value",
-        "boundaryGap": [0, 0.01],
-        "name": "Revenue (in Million USD)"
-      },
-      "yAxis": {
-        "type": "category",
-        "data": [
-          "Prepaid Subscribers",
-          "Postpaid Subscribers",
-          "Broadband Subscribers",
-          "Corporate Accounts",
-          "IoT Connections",
-          "Total Connections"
-        ]
-      },
-      "series": [
-        {
-          "name": "2021",
-          "type": "bar",
-          "data": [45, 30, 15, 10, 8, 108]
-        },
-        {
-          "name": "2022",
-          "type": "bar",
-          "data": [50, 35, 18, 12, 10, 125]
-        }
+  "horizontalBarChartOption": {
+    "tooltip": {
+      "trigger": "axis",
+      "axisPointer": {
+        "type": "shadow"
+      }
+    },
+    "legend": {
+      "data": ["2021", "2022"]
+    },
+    "grid": {
+      "left": "3%",
+      "right": "4%",
+      "bottom": "3%",
+      "containLabel": true
+    },
+    "xAxis": {
+      "type": "value",
+      "boundaryGap": [0, 0.01],
+      "name": "Revenue (in Million USD)"
+    },
+    "yAxis": {
+      "type": "category",
+      "data": [
+        "Prepaid Subscribers",
+        "Postpaid Subscribers",
+        "Broadband Subscribers",
+        "Corporate Accounts",
+        "IoT Connections",
+        "Total Connections"
       ]
     },
-   
+    "series": [
+      {
+        "name": "2021",
+        "type": "bar",
+        "data": [45, 30, 15, 10, 8, 108]
+      },
+      {
+        "name": "2022",
+        "type": "bar",
+        "data": [50, 35, 18, 12, 10, 125]
+      }
+    ]
+  },
+
   "verticalColChart": {
     "tooltip": {
       "trigger": "axis",
@@ -136,25 +134,20 @@
           "lineStyle": {
             "type": "dashed"
           },
-          "data": [
-            [
-              { "type": "min" },
-              { "type": "max" }
-            ]
-          ]
+          "data": [[{ "type": "min" }, { "type": "max" }]]
         }
       }
     ]
   },
-  "gaugeChart": {
+  "NetPromoterScoreGaugeChart": {
     "series": [
       {
         "type": "gauge",
         "axisLine": {
           "lineStyle": {
-            "width": 10,
+            "width": 15,
             "color": [
-              [0.30, "#FF6E76"],
+              [0.3, "#FF6E76"],
               [0.65, "#FDDD60"],
               [1, "#7CFFB2"]
             ]
@@ -183,7 +176,7 @@
         },
         "axisLabel": {
           "color": "inherit",
-          "distance": 20,
+          "distance": 30,
           "fontSize": 10
         },
         "detail": {
@@ -200,7 +193,64 @@
       }
     ]
   },
-  "progressGauge":{
+  "customerSatisfactionGaugeChart": {
+    "series": [
+      {
+        "type": "gauge",
+        "radius": "85%", 
+        "startAngle": 200, 
+        "endAngle": -20,
+        "axisLine": {
+          "lineStyle": {
+            "width": 10,
+            "color": [
+              [0.3, "#FF6E76"],
+              [0.65, "#FDDD60"],
+              [1, "#7CFFB2"]
+            ]
+          }
+        },
+        "pointer": {
+          "itemStyle": {
+            "color": "auto"
+          }
+        },
+        "axisTick": {
+          "distance": -20,
+          "length": 10,
+          "lineStyle": {
+            "color": "#fff",
+            "width": 1
+          }
+        },
+        "splitLine": {
+          "distance": -20,
+          "length": 10,
+          "lineStyle": {
+            "color": "#fff",
+            "width": 4
+          }
+        },
+        "axisLabel": {
+          "color": "inherit",
+          "distance": 25,
+          "fontSize": 10
+        },
+        "detail": {
+          "valueAnimation": true,
+          "formatter": "{value} ",
+          "color": "inherit",
+          "fontSize": 5
+        },
+        "data": [
+          {
+            "value": 85
+          }
+        ]
+      }
+    ]
+  },
+  "progressGauge": {
     "series": [
       {
         "type": "gauge",
@@ -282,7 +332,7 @@
       }
     ]
   },
-  "telecomProformanceAreaChart":{
+  "telecomProformanceAreaChart": {
     "tooltip": {
       "trigger": "axis",
       "axisPointer": {
@@ -385,12 +435,4 @@
       }
     ]
   }
-  
-  
-  
-  
-  
-    
-    
-  }
-  
+}
