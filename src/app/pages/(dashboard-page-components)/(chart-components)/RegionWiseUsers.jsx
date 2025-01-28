@@ -4,6 +4,7 @@ import Spinner from '@/app/components/Spinner';
 import ECharts from '@/app/components/ECharts';
 import {SOUTH_AFRICA} from '@/app/db/south-africa-geodata';
 import {registerMap} from 'echarts';
+import formatNumber from '@/app/utility/formatNumber';
 
 export default function RegionWiseUsers({filter = {}}) {
   const [data, setData] = useState([]);
@@ -12,7 +13,17 @@ export default function RegionWiseUsers({filter = {}}) {
   useEffect(() => {
     const dataPromise = new Promise((resolve) => {
       setTimeout(() => {
-        resolve(SOUTH_AFRICA);
+        resolve([
+          {name: 'Northern Cape', value: 51920},
+          {name: 'Western Cape', value: 1440000},
+          {name: 'Eastern Cape', value: 972460},
+          {name: 'Free State', value: 1100000},
+          {name: 'KwaZulu-Natal', value: 61340},
+          {name: 'North West', value: 69150},
+          {name: 'Gauteng', value: 1000000},
+          {name: 'Mpumalanga', value: 30050},
+          {name: 'Limpopo', value: 38050}
+        ]);
       }, 500);
     });
 
@@ -30,29 +41,41 @@ export default function RegionWiseUsers({filter = {}}) {
   registerMap('ZA', SOUTH_AFRICA);
 
   const option = {
-    grid: {
-      top: 0
+    grid:      {
+      top:          '2%',
+      left:         '2%',
+      right:        '2%',
+      containLabel: true
     },
-    tooltip: {
+    tooltip:   {
       trigger:            'item',
       showDelay:          0,
       transitionDuration: 0.2
     },
-    legend:  {
-      bottom: 0
+    visualMap: {
+      min:        30000,
+      max:        1500000,
+      left:       'right',
+      bottom:     'center',
+      realtime:   false,
+      calculable: true,
+      inRange:    {
+        color: ['lightskyblue', 'lightgreen', 'green']
+      }
     },
-    series:  [
+    series:    [
       {
-        name:     'South Africa',
-        type:     'map',
-        roam:     true,
-        map:      'ZA',
-        emphasis: {
-          label: {
-            show: true
-          }
+        name: 'South Africa',
+        type: 'map',
+        // roam:  true,
+        map:          'ZA',
+        layoutCenter: ['50%', '85%'],
+        layoutSize:   '160%',
+        label:        {
+          show: true
+          // formatter: (params) => formatNumber(params.value, null, 0)
         },
-        data:     []
+        data:         data
       }
     ]
   };

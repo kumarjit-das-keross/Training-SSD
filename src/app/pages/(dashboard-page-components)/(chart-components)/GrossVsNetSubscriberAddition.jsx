@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {BASE_DATA} from '@/app/db/base-data';
 import Spinner from '@/app/components/Spinner';
 import ECharts from '@/app/components/ECharts';
+import formatNumber from '@/app/utility/formatNumber';
 
 export default function GrossVsNetSubscriberAddition({filter = {}}) {
   const [data, setData] = useState([]);
@@ -87,8 +88,11 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
   console.log(data);
 
   const option = {
-    grid: {
-      top: 0
+    grid:    {
+      top:          '2%',
+      left:         '6%',
+      right:        '6%',
+      containLabel: true
     },
     tooltip: {
       trigger: 'axis'
@@ -96,26 +100,61 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
     legend:  {
       bottom: 0
     },
-    yAxis:   {
-      type: 'value',
-    },
+    yAxis:   [
+      {
+        type:         'value',
+        name:         'Gross Subscribers',
+        nameLocation: 'center',
+        nameGap:      45,
+        position:     'left',
+        // alignTicks:   true,
+        axisLabel: {
+          formatter: (value) => formatNumber(value, null, 0)
+        }
+      },
+      {
+        type:         'value',
+        name:         'Net Subscribers',
+        nameLocation: 'center',
+        nameGap:      50,
+        nameRotate:   -90,
+        position:     'right',
+        alignTicks:   true,
+        axisLabel:    {
+          formatter: (value) => formatNumber(value, null, 0)
+        }
+      }
+    ],
     xAxis:   {
       type: 'category',
       data: data.map((yearObject) => yearObject['date'])
     },
     series:  [
       {
-        name:     'Gross',
-        type:     'bar',
-        stack:    'total',
-        barWidth: '60%',
-        data:     data.map((yearObject) => yearObject['grossSubscribers'])
+        name:       'Gross Subscribers',
+        type:       'bar',
+        stack:      'total',
+        barWidth:   '60%',
+        label:      {
+          show:      true,
+          position:  'inside',
+          formatter: (params) => formatNumber(params.value, null, 0)
+        },
+        yAxisIndex: 0,
+        data:       data.map((yearObject) => yearObject['grossSubscribers'])
       },
       {
-        name:  'Net',
-        type:  'line',
-        stack: 'total',
-        data:  data.map((yearObject) => yearObject['netSubscribers'])
+        name:       'Net Subscribers',
+        type:       'line',
+        stack:      'total',
+        label:      {
+          show:      true,
+          position:  'top',
+          formatter: (params) => formatNumber(params.value, null, 0)
+        },
+        yAxisIndex: 1,
+        smooth:     true,
+        data:       data.map((yearObject) => yearObject['netSubscribers'])
       }
     ]
   };
