@@ -1,7 +1,7 @@
 'use client';
 
-import {IKONIcon} from '@/app/components/SVGIcons';
 import {useState} from 'react';
+import {IKONIcon} from '../components/SVGIcons';
 
 
 export default function StripNavigation({menuItems, onMenuItemClick, onChildMenuItemClick}) {
@@ -14,13 +14,13 @@ export default function StripNavigation({menuItems, onMenuItemClick, onChildMenu
 
   return (
     <div className='grow flex min-w-72 max-w-72'>
-      <nav className="bg-blue-500 min-w-12 max-w-12" title='IKON'>
+      <nav className="bg-blue-500 min-w-12 max-w-12">
         <ul>
           <li className="flex items-center justify-center px-1 py-2 h-12">{IKONIcon}</li>
           {menuItems.map((item, index) => (
             <li key={index} className={
               `flex items-center justify-center w-full h-12 ${selectedMenuItem.title === item.title ? 'bg-blue-800' : 'hover:bg-blue-700'}`
-            }>
+            } title={item.title}>
               <a
                 href="#"
                 className="px-1 py-2 inline-block w-8 h-8 text-white"
@@ -30,7 +30,7 @@ export default function StripNavigation({menuItems, onMenuItemClick, onChildMenu
                   onMenuItemClick(item);
                 }}
               >
-                <span className="flex items-center justify-center w-full h-full">{item.icon.element}</span>
+                <span className="flex items-center justify-center w-full h-full">{item.icon}</span>
                 <span className="sr-only">{item.title}</span>
               </a>
             </li>
@@ -52,7 +52,7 @@ export default function StripNavigation({menuItems, onMenuItemClick, onChildMenu
                     onChildMenuItemClick(item);
                   }}
                 >
-                  <span className="w-8 h-8 flex items-center justify-center">{item.icon.element}</span>
+                  <span className="w-8 h-8 flex items-center justify-center">{item.icon}</span>
                   <span className="inline-block">{item.title}</span>
                 </a>
               </li>

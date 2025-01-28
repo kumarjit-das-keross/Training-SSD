@@ -1,0 +1,433 @@
+{
+  "horizontalBarChartOption": {
+    "tooltip": {
+      "trigger": "axis",
+      "axisPointer": {
+        "type": "shadow"
+      }
+    },
+    "legend": {
+      "data": ["2021", "2022"]
+    },
+    "grid": {
+      "left": "3%",
+      "right": "4%",
+      "bottom": "3%",
+      "containLabel": true
+    },
+    "xAxis": {
+      "type": "value",
+      "boundaryGap": [0, 0.01],
+      "name": "Revenue (in Million USD)"
+    },
+    "yAxis": {
+      "type": "category",
+      "data": [
+        "Prepaid Subscribers",
+        "Postpaid Subscribers",
+        "Broadband Subscribers",
+        "Corporate Accounts",
+        "IoT Connections",
+        "Total Connections"
+      ]
+    },
+    "series": [
+      {
+        "name": "2021",
+        "type": "bar",
+        "data": [45, 30, 15, 10, 8, 108]
+      },
+      {
+        "name": "2022",
+        "type": "bar",
+        "data": [50, 35, 18, 12, 10, 125]
+      }
+    ]
+  },
+
+  "verticalColChart": {
+    "tooltip": {
+      "trigger": "axis",
+      "axisPointer": {
+        "type": "shadow"
+      }
+    },
+    "legend": {
+      "data": [
+        "Prepaid Subscribers",
+        "Postpaid Subscribers",
+        "Broadband Subscribers",
+        "Churned Customers",
+        "New Connections"
+      ]
+    },
+    "grid": {
+      "left": "3%",
+      "right": "4%",
+      "bottom": "3%",
+      "containLabel": true
+    },
+    "xAxis": [
+      {
+        "type": "category",
+        "data": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ]
+      }
+    ],
+    "yAxis": [
+      {
+        "type": "value",
+        "name": "Subscribers/Revenue"
+      }
+    ],
+    "series": [
+      {
+        "name": "Prepaid Subscribers",
+        "type": "bar",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [320, 300, 310, 340, 380, 400, 420]
+      },
+      {
+        "name": "Postpaid Subscribers",
+        "type": "bar",
+        "stack": "Subscribers",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [100, 120, 110, 150, 160, 170, 200]
+      },
+      {
+        "name": "Broadband Subscribers",
+        "type": "bar",
+        "stack": "Subscribers",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [50, 60, 70, 80, 90, 100, 120]
+      },
+      {
+        "name": "Churned Customers",
+        "type": "bar",
+        "stack": "Churn",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [20, 15, 18, 25, 30, 40, 35]
+      },
+      {
+        "name": "New Connections",
+        "type": "bar",
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [50, 60, 80, 90, 100, 120, 150],
+        "markLine": {
+          "lineStyle": {
+            "type": "dashed"
+          },
+          "data": [[{ "type": "min" }, { "type": "max" }]]
+        }
+      }
+    ]
+  },
+  "NetPromoterScoreGaugeChart": {
+    "series": [
+      {
+        "type": "gauge",
+        "axisLine": {
+          "lineStyle": {
+            "width": 15,
+            "color": [
+              [0.3, "#FF6E76"],
+              [0.65, "#FDDD60"],
+              [1, "#7CFFB2"]
+            ]
+          }
+        },
+        "pointer": {
+          "itemStyle": {
+            "color": "auto"
+          }
+        },
+        "axisTick": {
+          "distance": -30,
+          "length": 10,
+          "lineStyle": {
+            "color": "#fff",
+            "width": 2
+          }
+        },
+        "splitLine": {
+          "distance": -30,
+          "length": 30,
+          "lineStyle": {
+            "color": "#fff",
+            "width": 4
+          }
+        },
+        "axisLabel": {
+          "color": "inherit",
+          "distance": 30,
+          "fontSize": 10
+        },
+        "detail": {
+          "valueAnimation": true,
+          "formatter": "{value} ",
+          "color": "inherit",
+          "fontSize": 15
+        },
+        "data": [
+          {
+            "value": 85
+          }
+        ]
+      }
+    ]
+  },
+  "customerSatisfactionGaugeChart": {
+    "series": [
+      {
+        "type": "gauge",
+        "radius": "85%", 
+        "startAngle": 200, 
+        "endAngle": -20,
+        "axisLine": {
+          "lineStyle": {
+            "width": 10,
+            "color": [
+              [0.3, "#FF6E76"],
+              [0.65, "#FDDD60"],
+              [1, "#7CFFB2"]
+            ]
+          }
+        },
+        "pointer": {
+          "itemStyle": {
+            "color": "auto"
+          }
+        },
+        "axisTick": {
+          "distance": -20,
+          "length": 10,
+          "lineStyle": {
+            "color": "#fff",
+            "width": 1
+          }
+        },
+        "splitLine": {
+          "distance": -20,
+          "length": 10,
+          "lineStyle": {
+            "color": "#fff",
+            "width": 4
+          }
+        },
+        "axisLabel": {
+          "color": "inherit",
+          "distance": 25,
+          "fontSize": 10
+        },
+        "detail": {
+          "valueAnimation": true,
+          "formatter": "{value} ",
+          "color": "inherit",
+          "fontSize": 5
+        },
+        "data": [
+          {
+            "value": 85
+          }
+        ]
+      }
+    ]
+  },
+  "progressGauge": {
+    "series": [
+      {
+        "type": "gauge",
+        "startAngle": 180,
+        "endAngle": 0,
+        "min": 0,
+        "max": 100,
+        "splitNumber": 1,
+        "itemStyle": {
+          "color": "#58D9F9",
+          "shadowColor": "rgba(0,138,255,0.45)",
+          "shadowBlur": 10,
+          "shadowOffsetX": 2,
+          "shadowOffsetY": 2
+        },
+        "progress": {
+          "show": true,
+          "roundCap": true,
+          "width": 5
+        },
+        "pointer": {
+          "icon": "path://M2090.36389,615.30999 L2090.36389,615.30999 C2091.48372,615.30999 2092.40383,616.194028 2092.44859,617.312956 L2096.90698,728.755929 C2097.05155,732.369577 2094.2393,735.416212 2090.62566,735.56078 C2090.53845,735.564269 2090.45117,735.566014 2090.36389,735.566014 L2090.36389,735.566014 C2086.74736,735.566014 2083.81557,732.63423 2083.81557,729.017692 C2083.81557,728.930412 2083.81732,728.84314 2083.82081,728.755929 L2088.2792,617.312956 C2088.32396,616.194028 2089.24407,615.30999 2090.36389,615.30999 Z",
+          "length": "75%",
+          "width": 5,
+          "offsetCenter": [0, "5%"]
+        },
+        "axisLine": {
+          "roundCap": true,
+          "lineStyle": {
+            "width": 5
+          }
+        },
+        "axisTick": {
+          "splitNumber": 2,
+          "lineStyle": {
+            "width": 2,
+            "color": "#999"
+          }
+        },
+        "splitLine": {
+          "length": 12,
+          "lineStyle": {
+            "width": 3,
+            "color": "#999"
+          }
+        },
+        "axisLabel": {
+          "distance": 30,
+          "color": "#999",
+          "fontSize": 2
+        },
+        "title": {
+          "show": false
+        },
+        "detail": {
+          "backgroundColor": "#fff",
+          "width": "10%",
+          "lineHeight": 10,
+          "height": 5,
+          "offsetCenter": [0, "15%"],
+          "valueAnimation": true,
+          "rich": {
+            "value": {
+              "fontSize": 5,
+              "color": "#777"
+            },
+            "unit": {
+              "fontSize": 5,
+              "color": "#999",
+              "padding": [0, 0, -20, 10]
+            }
+          }
+        },
+        "data": [
+          {
+            "value": 80
+          }
+        ]
+      }
+    ]
+  },
+  "telecomProformanceAreaChart": {
+    "tooltip": {
+      "trigger": "axis",
+      "axisPointer": {
+        "type": "cross",
+        "label": {
+          "backgroundColor": "#6a7985"
+        }
+      }
+    },
+    "legend": {
+      "data": [
+        "Data Centers Power Usage (kWh)",
+        "Network Latency (ms)",
+        "Maintenance Tasks Completed",
+        "New Tower Installations",
+        "Packet Loss (%)"
+      ]
+    },
+    "grid": {
+      "left": "3%",
+      "right": "4%",
+      "bottom": "3%",
+      "containLabel": true
+    },
+    "xAxis": [
+      {
+        "type": "category",
+        "boundaryGap": false,
+        "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+      }
+    ],
+    "yAxis": [
+      {
+        "type": "value",
+        "name": "",
+        "axisLabel": {
+          "formatter": "{value}"
+        }
+      }
+    ],
+    "series": [
+      {
+        "name": "Data Centers Power Usage (kWh)",
+        "type": "line",
+        "stack": "Total",
+        "areaStyle": {},
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [5000, 5200, 5100, 5300, 5400, 5500, 5600]
+      },
+      {
+        "name": "Network Latency (ms)",
+        "type": "line",
+        "stack": "Total",
+        "areaStyle": {},
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [30, 32, 28, 35, 40, 37, 33]
+      },
+      {
+        "name": "Maintenance Tasks Completed",
+        "type": "line",
+        "stack": "Total",
+        "areaStyle": {},
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [20, 25, 30, 28, 35, 40, 38]
+      },
+      {
+        "name": "New Tower Installations",
+        "type": "line",
+        "stack": "Total",
+        "areaStyle": {},
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [2, 3, 1, 4, 3, 5, 4]
+      },
+      {
+        "name": "Packet Loss (%)",
+        "type": "line",
+        "stack": "Total",
+        "label": {
+          "show": true,
+          "position": "top"
+        },
+        "areaStyle": {},
+        "emphasis": {
+          "focus": "series"
+        },
+        "data": [0.5, 0.7, 0.6, 0.8, 0.9, 0.4, 0.3]
+      }
+    ]
+  }
+}
