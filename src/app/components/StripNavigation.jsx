@@ -1,7 +1,7 @@
 'use client';
 
-import {IKONIcon} from '@/app/components/SVGIcons';
 import {useState} from 'react';
+import {IKONIcon} from '../components/SVGIcons';
 
 
 export default function StripNavigation({menuItems, onMenuItemClick, onChildMenuItemClick}) {

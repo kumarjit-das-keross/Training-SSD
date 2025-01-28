@@ -5,6 +5,13 @@ import ECharts from '@/app/components/ECharts';
 import {BASE_DATA} from '@/app/db/base-data';
 import {monthOrder} from '@/app/utility/default-values';
 
+const planNamesMap = {
+  '5gbPlan': '5GB Plan',
+  '5gbWithTetheringPlan': '5GB with Tethering Plan',
+  '2gbPlan': '2GB Plan',
+  '500MbPlan': '500MB Plan'
+};
+
 export default function DataPlanPurchased({filter = {}}) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -52,7 +59,7 @@ export default function DataPlanPurchased({filter = {}}) {
 
         for (let plan in dataPlanWiseData) {
           data.push({
-            name:  plan,
+            name:  planNamesMap[plan],
             value: dataPlanWiseData[plan]
           });
         }
@@ -73,10 +80,15 @@ export default function DataPlanPurchased({filter = {}}) {
   }, []);
 
   const option = {
+    grid: {
+      top: 0
+    },
     tooltip: {
       trigger: 'item'
     },
-    legend:  {},
+    legend:  {
+      bottom: 0
+    },
     series:  [
       {
         name:     'Plan',

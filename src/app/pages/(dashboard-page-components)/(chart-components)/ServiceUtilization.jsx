@@ -85,10 +85,15 @@ export default function ServiceUtilization({filter = {}}) {
   }, []);
 
   const option = {
+    grid: {
+      top: 0
+    },
     tooltip: {
       trigger: 'axis'
     },
-    legend:  {},
+    legend:  {
+      bottom: 0
+    },
     xAxis:   {
       type: 'category',
       data: data.map((yearObject) => yearObject['date'])

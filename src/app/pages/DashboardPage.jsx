@@ -1,4 +1,3 @@
-import Card from '@/app/components/Card';
 import Subscribers from '@/app/pages/(dashboard-page-components)/(widget-components)/Subscribers';
 import Revenue from '@/app/pages/(dashboard-page-components)/(widget-components)/Revenue';
 import MarketShare from '@/app/pages/(dashboard-page-components)/(widget-components)/MarketShare';

@@ -80,10 +80,15 @@ export default function CAPEXToSalesRatio({filter = {}}) {
   }, []);
 
   const option = {
+    grid: {
+      top: 0
+    },
     tooltip: {
       trigger: 'axis'
     },
-    legend:  {},
+    legend:  {
+      bottom: 0
+    },
     xAxis:   {
       type: 'category',
       data: data.map((item) => item['date'])
@@ -93,7 +98,7 @@ export default function CAPEXToSalesRatio({filter = {}}) {
     },
     series:  [
       {
-        name:  'Ratio',
+        name: 'Ratio',
         data: data.map((item) => item['ratio']),
         type: 'line'
       }

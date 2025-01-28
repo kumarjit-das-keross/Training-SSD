@@ -85,18 +85,23 @@ export default function TotalSubscribersPerServiceType({filter = {}}) {
   }, []);
 
   const option = {
+    grid: {
+      top: 0
+    },
     tooltip: {
       trigger: 'axis'
     },
-    legend: {},
-    yAxis:  {
+    legend:  {
+      bottom: 0
+    },
+    yAxis:   {
       type: 'value'
     },
-    xAxis:  {
+    xAxis:   {
       type: 'category',
       data: data.map((yearObject) => yearObject['date'])
     },
-    series: [
+    series:  [
       {
         name:     'Prepaid',
         type:     'bar',

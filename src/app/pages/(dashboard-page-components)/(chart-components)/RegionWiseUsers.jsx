@@ -30,10 +30,16 @@ export default function RegionWiseUsers({filter = {}}) {
   registerMap('ZA', SOUTH_AFRICA);
 
   const option = {
+    grid: {
+      top: 0
+    },
     tooltip: {
       trigger:            'item',
       showDelay:          0,
       transitionDuration: 0.2
+    },
+    legend:  {
+      bottom: 0
     },
     series:  [
       {

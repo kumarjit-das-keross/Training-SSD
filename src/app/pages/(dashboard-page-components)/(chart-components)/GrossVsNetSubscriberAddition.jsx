@@ -87,10 +87,15 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
   console.log(data);
 
   const option = {
+    grid: {
+      top: 0
+    },
     tooltip: {
       trigger: 'axis'
     },
-    legend:  {},
+    legend:  {
+      bottom: 0
+    },
     yAxis:   {
       type: 'value',
     },
