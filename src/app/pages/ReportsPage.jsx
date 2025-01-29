@@ -1,6 +1,7 @@
 import Header from '@/app/components/Header';
 import ChartLayout from '@/app/components/ChartLayout';
 import chartOptions from '@/app/db/chartOptions';
+import MoveableAndSelecto from '@/app/components/MoveableAndSelecto';
 
 export default function ReportsPage() {
   const horizontalBarChartOption = chartOptions.horizontalBarChartOption;
@@ -30,8 +31,8 @@ export default function ReportsPage() {
     //   <MoveableAndSelecto/>
     //   {/* <MoveableEle/> */}
     // </div>
-    // <MoveableAndSelecto>
-    <>
+     <MoveableAndSelecto>
+     {/*<>*/}
       <div className="elements selecto-area h-full w-full">
         <div className="gap-4 grid grid-cols-12 h-full p-4 w-full">
           <div className="bg-white col-span-12 lg:col-span-7 shadow hi">
@@ -84,8 +85,8 @@ export default function ReportsPage() {
           </div>
         </div>
       </div>
-    </>
-    /* </MoveableAndSelecto> */
+     {/*</>*/}
+     </MoveableAndSelecto>
   );
 }
 

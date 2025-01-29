@@ -37,7 +37,7 @@ export default function Subscribers() {
           }}/>
         ) : (
           <Widget title="Subscribers">
-            {formatNumber(data)}
+            {formatNumber('154678')}
           </Widget>
         )
       }

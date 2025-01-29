@@ -80,6 +80,10 @@ export default function RegionWiseUsers({filter = {}}) {
     ]
   };
 
+  const onClickHandler = (params) => {
+    console.log(params);
+  };
+
   return (
     <div className="col-span-1">
       <Card title="Region-Wise Users">
@@ -87,7 +91,8 @@ export default function RegionWiseUsers({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'Region-Wise Users'}}/>
           )
         }
       </Card>

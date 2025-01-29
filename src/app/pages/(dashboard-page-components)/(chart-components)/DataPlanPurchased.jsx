@@ -113,6 +113,10 @@ export default function DataPlanPurchased({filter = {}}) {
     ]
   };
 
+  const onClickHandler = (params) => {
+    console.log(params);
+  };
+
   return (
     <div className="lg:col-span-3 col-span-1">
       <Card title="Data Plan Purchased">
@@ -120,7 +124,8 @@ export default function DataPlanPurchased({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'Data Plan Purchased'}}/>
           )
         }
       </Card>

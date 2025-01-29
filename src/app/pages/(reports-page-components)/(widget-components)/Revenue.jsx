@@ -3,18 +3,18 @@
 import {useEffect, useState} from 'react';
 import Widget from '@/app/components/Widget';
 import Spinner from '@/app/components/Spinner';
-import formatNumber from '@/app/utility/formatNumber';
+import formatCurrency from '@/app/utility/formatCurrency';
 
-export default function Subscribers() {
+export default function Revenue() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const dataPromise = new Promise((resolve) => {
       setTimeout(() => {
-        const data = 154628;
+        const data = 7350000;
         resolve(data);
-      }, 300);
+      }, 350);
     });
 
     dataPromise
@@ -36,8 +36,8 @@ export default function Subscribers() {
             rounded: 'md'
           }}/>
         ) : (
-          <Widget title="Subscribers">
-            {formatNumber(data)}
+          <Widget title="Revenue">
+            {formatCurrency(data)}
           </Widget>
         )
       }

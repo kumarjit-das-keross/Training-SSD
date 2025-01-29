@@ -4,6 +4,7 @@ import Spinner from '@/app/components/Spinner';
 import ECharts from '@/app/components/ECharts';
 import {BASE_DATA} from '@/app/db/base-data';
 import formatNumber from '@/app/utility/formatNumber';
+import {monthOrder} from '@/app/utility/default-values';
 
 export default function CAPEXToSalesRatio({filter = {}}) {
   const [data, setData] = useState([]);
@@ -32,11 +33,11 @@ export default function CAPEXToSalesRatio({filter = {}}) {
 
             for (let month in monthWiseData) {
               if (isStartYear) {
-                if (ref.monthOrder[month] >= ref.monthOrder[filter.startMonth]) {
+                if (monthOrder[month] >= monthOrder[filter.startMonth]) {
                   yearWiseRatioData[year] += monthWiseData[month];
                 }
               } else if (isEndYear) {
-                if (ref.monthOrder[month] <= ref.monthOrder[filter.endMonth]) {
+                if (monthOrder[month] <= monthOrder[filter.endMonth]) {
                   yearWiseRatioData[year] += monthWiseData[month];
                 }
               } else {
@@ -121,6 +122,10 @@ export default function CAPEXToSalesRatio({filter = {}}) {
     ]
   };
 
+  const onClickHandler = (params) => {
+    console.log(params);
+  };
+
   return (
     <div className="lg:col-span-4 col-span-1">
       <Card title="CAPEX to Sales Ratio">
@@ -128,7 +133,8 @@ export default function CAPEXToSalesRatio({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'CAPEX to Sales Ratio'}}/>
           )
         }
       </Card>

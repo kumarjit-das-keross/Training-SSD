@@ -13,18 +13,21 @@ import ServiceUtilization from '@/app/pages/(dashboard-page-components)/(chart-c
 
 export default function DashboardPage() {
   const filterObject = {
+    company:    null,
+    startYear:  null,
     startMonth: 'Jan',
-    endMonth: 'Dec'
+    endYear:    null,
+    endMonth:   'Dec'
   };
 
   return (
-    <div className="grid grid-flow-col grid-rows-11 gap-4 h-full">
+    <div className="grid grid-flow-col grid-rows-11 gap-4 lg:h-full h-min">
 
       <div className="row-span-6 grid lg:grid-cols-3 grid-cols-1 gap-4">
 
         <div className="lg:col-span-2 col-span-1 grid grid-flow-col grid-rows-10 gap-4">
 
-          <div className="row-span-2 grid lg:grid-cols-4 grid-cols-1 gap-4">
+          <div className="row-span-2 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
             <Subscribers/>
             <Revenue/>
             <MarketShare/>

@@ -8,12 +8,15 @@ import ReportsPage from './pages/ReportsPage';
 import DoesNotExistPage from './pages/DoesNotExistPage';
 import {useState} from 'react';
 import {FileChartColumn, Heading1, Heading2, House, LayoutDashboard, RectangleEllipsis} from 'lucide-react';
+import ReportsPage2 from '@/app/pages/ReportsPage2';
 
 function getPage(pageName) {
   if (pageName === 'Home - Dashboard') {
     return DashboardPage;
   } else if (pageName === 'Home - Reports') {
     return ReportsPage;
+  } else if (pageName === 'Home - Reports 2') {
+    return ReportsPage2;
   }
 
   return DoesNotExistPage;
@@ -32,6 +35,10 @@ export default function Home() {
         },
         {
           title: 'Reports',
+          icon:  <FileChartColumn size={16} strokeWidth={1}/>
+        },
+        {
+          title: 'Reports 2',
           icon:  <FileChartColumn size={16} strokeWidth={1}/>
         }
       ],
@@ -75,7 +82,7 @@ export default function Home() {
         onChildMenuItemClick={onChildMenuItemClick}
         onMenuItemClick={onMenuItemClick}
       />
-      <main className="flex flex-row flex-grow gap-4 h-full w-full overflow-x-hidden overflow-y-hidden relative">
+      <main className="flex flex-row flex-grow gap-4 h-full w-full overflow-x-hidden lg:overflow-y-hidden relative">
         <div className="w-full h-full p-4">
           {page}
         </div>

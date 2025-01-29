@@ -159,6 +159,10 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
     ]
   };
 
+  const onClickHandler = (params) => {
+    console.log(params);
+  };
+
   return (
     <div className="lg:col-span-5 col-span-1">
       <Card title="Gross Vs Net Subscriber Addition">
@@ -166,7 +170,8 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'Gross Vs Net Subscriber Addition'}}/>
           )
         }
       </Card>

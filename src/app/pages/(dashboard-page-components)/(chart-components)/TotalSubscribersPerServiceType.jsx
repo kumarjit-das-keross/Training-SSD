@@ -131,6 +131,10 @@ export default function TotalSubscribersPerServiceType({filter = {}}) {
     })
   };
 
+  const onClickHandler = (params) => {
+    console.log(params);
+  };
+
   return (
     <div className="col-span-1">
       <Card title="Total Subscribers Per Service Type">
@@ -138,7 +142,8 @@ export default function TotalSubscribersPerServiceType({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'Total Subscribers Per Service Type'}}/>
           )
         }
       </Card>

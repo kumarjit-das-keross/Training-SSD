@@ -131,6 +131,10 @@ export default function ServiceUtilization({filter = {}}) {
     })
   };
 
+  const onClickHandler = (params) => {
+    console.log(params);
+  };
+
   return (
     <div className="lg:col-span-1 col-span-1">
       <Card title="Service Utilization">
@@ -138,7 +142,8 @@ export default function ServiceUtilization({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'Service Utilization'}}/>
           )
         }
       </Card>
