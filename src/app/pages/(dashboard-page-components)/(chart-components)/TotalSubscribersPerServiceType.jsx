@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {BASE_DATA} from '@/app/db/base-data';
 import Spinner from '@/app/components/Spinner';
 import ECharts from '@/app/components/ECharts';
+import formatNumber from '@/app/utility/formatNumber';
 
 export default function TotalSubscribersPerServiceType({filter = {}}) {
   const [data, setData] = useState([]);
@@ -85,8 +86,11 @@ export default function TotalSubscribersPerServiceType({filter = {}}) {
   }, []);
 
   const option = {
-    grid: {
-      top: 0
+    grid:    {
+      top:          '2%',
+      left:         '6%',
+      right:        '2%',
+      containLabel: true
     },
     tooltip: {
       trigger: 'axis'
@@ -95,35 +99,40 @@ export default function TotalSubscribersPerServiceType({filter = {}}) {
       bottom: 0
     },
     yAxis:   {
-      type: 'value'
+      type:         'value',
+      name:         'Subscribers',
+      nameLocation: 'center',
+      nameGap:      45,
+      axisLabel:    {
+        formatter: (value) => formatNumber(value, null, 0)
+      }
     },
     xAxis:   {
       type: 'category',
       data: data.map((yearObject) => yearObject['date'])
     },
     series:  [
-      {
-        name:     'Prepaid',
+               {name: 'Prepaid', key: 'prePaid'},
+               {name: 'Postpaid', key: 'postPaid'},
+               {name: 'Fixed', key: 'fixedPlan'}
+             ].map(({name, key}) => {
+      return {
+        name:     name,
         type:     'bar',
         stack:    'total',
         barWidth: '60%',
-        data:     data.map((yearObject) => yearObject['prePaid'])
-      },
-      {
-        name:     'Postpaid',
-        type:     'bar',
-        stack:    'total',
-        barWidth: '60%',
-        data:     data.map((yearObject) => yearObject['postPaid'])
-      },
-      {
-        name:     'Fixed',
-        type:     'bar',
-        stack:    'total',
-        barWidth: '60%',
-        data:     data.map((yearObject) => yearObject['fixedPlan'])
-      }
-    ]
+        label:    {
+          show:      true,
+          position:  'inside',
+          formatter: (params) => formatNumber(params.value, null, 0)
+        },
+        data:     data.map((yearObject) => yearObject[key])
+      };
+    })
+  };
+
+  const onClickHandler = (params) => {
+    console.log(params);
   };
 
   return (
@@ -133,7 +142,8 @@ export default function TotalSubscribersPerServiceType({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'Total Subscribers Per Service Type'}}/>
           )
         }
       </Card>

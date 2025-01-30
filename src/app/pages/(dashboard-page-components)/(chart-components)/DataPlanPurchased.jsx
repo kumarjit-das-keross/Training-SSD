@@ -6,10 +6,10 @@ import {BASE_DATA} from '@/app/db/base-data';
 import {monthOrder} from '@/app/utility/default-values';
 
 const planNamesMap = {
-  '5gbPlan': '5GB Plan',
+  '5gbPlan':              '5GB Plan',
   '5gbWithTetheringPlan': '5GB with Tethering Plan',
-  '2gbPlan': '2GB Plan',
-  '500MbPlan': '500MB Plan'
+  '2gbPlan':              '2GB Plan',
+  '500MbPlan':            '500MB Plan'
 };
 
 export default function DataPlanPurchased({filter = {}}) {
@@ -80,8 +80,11 @@ export default function DataPlanPurchased({filter = {}}) {
   }, []);
 
   const option = {
-    grid: {
-      top: 0
+    grid:    {
+      top:          '2%',
+      left:         '2%',
+      right:        '2%',
+      containLabel: true
     },
     tooltip: {
       trigger: 'item'
@@ -93,12 +96,13 @@ export default function DataPlanPurchased({filter = {}}) {
       {
         name:     'Plan',
         type:     'pie',
-        radius:   '65%',
+        radius:   '60%',
+        center:   ['50%', '40%'],
         data:     data,
-        label: {
+        label:    {
           formatter: '{d}%'
         },
-          emphasis: {
+        emphasis: {
           itemStyle: {
             shadowBlur:    5,
             shadowOffsetX: 0,
@@ -109,6 +113,10 @@ export default function DataPlanPurchased({filter = {}}) {
     ]
   };
 
+  const onClickHandler = (params) => {
+    console.log(params);
+  };
+
   return (
     <div className="lg:col-span-3 col-span-1">
       <Card title="Data Plan Purchased">
@@ -116,7 +124,8 @@ export default function DataPlanPurchased({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'Data Plan Purchased'}}/>
           )
         }
       </Card>

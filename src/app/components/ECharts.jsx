@@ -9,7 +9,9 @@ export default function ECharts({
                                   style,
                                   settings,
                                   loading,
-                                  theme
+                                  theme,
+                                  onClick = () => {
+                                  }
                                 }) {
   const chartRef = useRef(null);
 
@@ -21,6 +23,7 @@ export default function ECharts({
     }
 
     function resizeChart() {
+      console.log('resizeChart');
       chart?.resize();
     }
 
@@ -37,6 +40,7 @@ export default function ECharts({
     if (chartRef.current !== null) {
       const chart = getInstanceByDom(chartRef.current);
       chart.setOption(option, settings);
+      chart.on('click', onClick);
     }
   }, [option, settings, theme]);
 
@@ -48,5 +52,6 @@ export default function ECharts({
     }
   }, [loading, theme]);
 
-  return <div ref={chartRef} style={{width: '100%', height: '100%', ...style}}/>;
+  return <div ref={chartRef} style={{width: '100%', height: '100%', minHeight: '200px', ...style}}/>;
+  // return <div>{option.title}</div>;
 }

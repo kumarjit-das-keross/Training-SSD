@@ -3,6 +3,8 @@ import {useEffect, useState} from 'react';
 import Spinner from '@/app/components/Spinner';
 import ECharts from '@/app/components/ECharts';
 import {BASE_DATA} from '@/app/db/base-data';
+import formatNumber from '@/app/utility/formatNumber';
+import {monthOrder} from '@/app/utility/default-values';
 
 export default function CAPEXToSalesRatio({filter = {}}) {
   const [data, setData] = useState([]);
@@ -31,11 +33,11 @@ export default function CAPEXToSalesRatio({filter = {}}) {
 
             for (let month in monthWiseData) {
               if (isStartYear) {
-                if (ref.monthOrder[month] >= ref.monthOrder[filter.startMonth]) {
+                if (monthOrder[month] >= monthOrder[filter.startMonth]) {
                   yearWiseRatioData[year] += monthWiseData[month];
                 }
               } else if (isEndYear) {
-                if (ref.monthOrder[month] <= ref.monthOrder[filter.endMonth]) {
+                if (monthOrder[month] <= monthOrder[filter.endMonth]) {
                   yearWiseRatioData[year] += monthWiseData[month];
                 }
               } else {
@@ -80,8 +82,11 @@ export default function CAPEXToSalesRatio({filter = {}}) {
   }, []);
 
   const option = {
-    grid: {
-      top: 0
+    grid:    {
+      top:          '2%',
+      left:         '4%',
+      right:        '2%',
+      containLabel: true
     },
     tooltip: {
       trigger: 'axis'
@@ -94,15 +99,31 @@ export default function CAPEXToSalesRatio({filter = {}}) {
       data: data.map((item) => item['date'])
     },
     yAxis:   {
-      type: 'value'
+      type:         'value',
+      name:         'CAPEX to Sales Ratio',
+      nameLocation: 'center',
+      nameGap:      30,
+      axisLabel:    {
+        formatter: (value) => formatNumber(value, null, 0)
+      }
     },
     series:  [
       {
-        name: 'Ratio',
-        data: data.map((item) => item['ratio']),
-        type: 'line'
+        name:   'Ratio',
+        type:   'line',
+        label:  {
+          show:      true,
+          position:  'top',
+          formatter: (params) => formatNumber(params.value, null, 0)
+        },
+        smooth: true,
+        data:   data.map((item) => item['ratio'])
       }
     ]
+  };
+
+  const onClickHandler = (params) => {
+    console.log(params);
   };
 
   return (
@@ -112,7 +133,8 @@ export default function CAPEXToSalesRatio({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'CAPEX to Sales Ratio'}}/>
           )
         }
       </Card>

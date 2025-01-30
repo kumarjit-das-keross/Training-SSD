@@ -1,20 +1,20 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import Widget from '@/app/components/Widget';
 import Spinner from '@/app/components/Spinner';
-import formatNumber from '@/app/utility/formatNumber';
+import formatCurrency from '@/app/utility/formatCurrency';
+import InfoWidget from '@/app/components/InfoWidget';
 
-export default function Subscribers() {
-  const [data, setData] = useState(null);
+export default function Revenue() {
+  const [data, setData] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const dataPromise = new Promise((resolve) => {
       setTimeout(() => {
-        const data = 154628;
+        const data = 7350000;
         resolve(data);
-      }, 300);
+      }, 350);
     });
 
     dataPromise
@@ -36,9 +36,11 @@ export default function Subscribers() {
             rounded: 'md'
           }}/>
         ) : (
-          <Widget title="Subscribers">
-            {formatNumber(data)}
-          </Widget>
+          <InfoWidget
+            title="Revenue"
+            value={formatCurrency(data)}
+            info={{type: 'negative', text: '-5% from year'}}
+          />
         )
       }
     </div>

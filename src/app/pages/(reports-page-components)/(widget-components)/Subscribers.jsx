@@ -1,18 +1,18 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import Widget from '@/app/components/Widget';
 import Spinner from '@/app/components/Spinner';
 import formatNumber from '@/app/utility/formatNumber';
+import InfoWidget from '@/app/components/InfoWidget';
 
 export default function Subscribers() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const dataPromise = new Promise((resolve) => {
       setTimeout(() => {
-        const data = 154628;
+        const data = 1546289;
         resolve(data);
       }, 300);
     });
@@ -36,9 +36,11 @@ export default function Subscribers() {
             rounded: 'md'
           }}/>
         ) : (
-          <Widget title="Subscribers">
-            {formatNumber(data)}
-          </Widget>
+          <InfoWidget
+            title="Subscribers"
+            value={new Intl.NumberFormat().format(data)}
+            info={{type: 'positive', text: '+8% from year'}}
+          />
         )
       }
     </div>

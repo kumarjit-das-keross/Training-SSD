@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {BASE_DATA} from '@/app/db/base-data';
 import Spinner from '@/app/components/Spinner';
 import ECharts from '@/app/components/ECharts';
+import formatNumber from '@/app/utility/formatNumber';
 
 export default function ServiceUtilization({filter = {}}) {
   const [data, setData] = useState([]);
@@ -85,8 +86,11 @@ export default function ServiceUtilization({filter = {}}) {
   }, []);
 
   const option = {
-    grid: {
-      top: 0
+    grid:    {
+      top:          '2%',
+      left:         '6%',
+      right:        '2%',
+      containLabel: true
     },
     tooltip: {
       trigger: 'axis'
@@ -99,28 +103,36 @@ export default function ServiceUtilization({filter = {}}) {
       data: data.map((yearObject) => yearObject['date'])
     },
     yAxis:   {
-      type: 'value'
+      type:         'value',
+      name:         'Service Utilization',
+      nameLocation: 'center',
+      nameGap:      45,
+      axisLabel:    {
+        formatter: (value) => formatNumber(value, null, 0)
+      }
     },
     series:  [
-      {
-        name:  'Data',
-        type:  'line',
-        stack: 'Total',
-        data:  data.map((yearObject) => yearObject['utilizationData'])
-      },
-      {
-        name:  'Voice',
-        type:  'line',
-        stack: 'Total',
-        data:  data.map((yearObject) => yearObject['utilizationVoice'])
-      },
-      {
-        name:  'Text',
-        type:  'line',
-        stack: 'Total',
-        data:  data.map((yearObject) => yearObject['utilizationText'])
-      }
-    ]
+               {name: 'Data', key: 'utilizationData'},
+               {name: 'Voice', key: 'utilizationVoice'},
+               {name: 'Text', key: 'utilizationText'}
+             ].map(({name, key}) => {
+      return {
+        name:   name,
+        type:   'line',
+        stack:  'Total',
+        label:  {
+          show:      true,
+          position:  'top',
+          formatter: (params) => formatNumber(params.value, null, 0)
+        },
+        smooth: true,
+        data:   data.map((yearObject) => yearObject[key])
+      };
+    })
+  };
+
+  const onClickHandler = (params) => {
+    console.log(params);
   };
 
   return (
@@ -130,7 +142,8 @@ export default function ServiceUtilization({filter = {}}) {
           loading ? (
             <Spinner/>
           ) : (
-            <ECharts option={option}/>
+            <ECharts option={option} onClick={onClickHandler}/>
+            // <ECharts option={{title: 'Service Utilization'}}/>
           )
         }
       </Card>
