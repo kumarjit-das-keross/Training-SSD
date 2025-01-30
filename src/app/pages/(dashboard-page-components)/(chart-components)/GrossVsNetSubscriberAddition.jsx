@@ -100,6 +100,10 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
     legend:  {
       bottom: 0
     },
+    xAxis:   {
+      type: 'category',
+      data: data.map((yearObject) => yearObject['date'])
+    },
     yAxis:   [
       {
         type:         'value',
@@ -107,8 +111,7 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
         nameLocation: 'center',
         nameGap:      45,
         position:     'left',
-        // alignTicks:   true,
-        axisLabel: {
+        axisLabel:    {
           formatter: (value) => formatNumber(value, null, 0)
         }
       },
@@ -125,15 +128,10 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
         }
       }
     ],
-    xAxis:   {
-      type: 'category',
-      data: data.map((yearObject) => yearObject['date'])
-    },
     series:  [
       {
         name:       'Gross Subscribers',
         type:       'bar',
-        stack:      'total',
         barWidth:   '60%',
         label:      {
           show:      true,
@@ -146,7 +144,6 @@ export default function GrossVsNetSubscriberAddition({filter = {}}) {
       {
         name:       'Net Subscribers',
         type:       'line',
-        stack:      'total',
         label:      {
           show:      true,
           position:  'top',

@@ -4,19 +4,19 @@ import './globals.css';
 
 import StripNavigation from './components/StripNavigation';
 import DashboardPage from './pages/DashboardPage';
-import ReportsPage from './pages/ReportsPage';
+import MovableDemoPage from './pages/MovableDemoPage';
 import DoesNotExistPage from './pages/DoesNotExistPage';
 import {useState} from 'react';
-import {FileChartColumn, Heading1, Heading2, House, LayoutDashboard, RectangleEllipsis} from 'lucide-react';
-import ReportsPage2 from '@/app/pages/ReportsPage2';
+import {FileChartColumn, Heading1, Heading2, House, LayoutDashboard, RectangleEllipsis, Layers2} from 'lucide-react';
+import ReportsPage from '@/app/pages/ReportsPage';
 
 function getPage(pageName) {
   if (pageName === 'Home - Dashboard') {
     return DashboardPage;
+  } else if (pageName === 'Home - Movable Demo') {
+    return MovableDemoPage;
   } else if (pageName === 'Home - Reports') {
     return ReportsPage;
-  } else if (pageName === 'Home - Reports 2') {
-    return ReportsPage2;
   }
 
   return DoesNotExistPage;
@@ -38,8 +38,8 @@ export default function Home() {
           icon:  <FileChartColumn size={16} strokeWidth={1}/>
         },
         {
-          title: 'Reports 2',
-          icon:  <FileChartColumn size={16} strokeWidth={1}/>
+          title: 'Movable Demo',
+          icon:  <Layers2 size={16} strokeWidth={1}/>
         }
       ],
       selected: true

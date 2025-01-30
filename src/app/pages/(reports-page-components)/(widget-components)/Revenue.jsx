@@ -1,12 +1,12 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import Widget from '@/app/components/Widget';
 import Spinner from '@/app/components/Spinner';
 import formatCurrency from '@/app/utility/formatCurrency';
+import InfoWidget from '@/app/components/InfoWidget';
 
 export default function Revenue() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,9 +36,11 @@ export default function Revenue() {
             rounded: 'md'
           }}/>
         ) : (
-          <Widget title="Revenue">
-            {formatCurrency(data)}
-          </Widget>
+          <InfoWidget
+            title="Revenue"
+            value={formatCurrency(data)}
+            info={{type: 'negative', text: '-5% from year'}}
+          />
         )
       }
     </div>
